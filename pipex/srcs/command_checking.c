@@ -65,7 +65,7 @@ char	**get_path(char **envp)
 	return (array_envp);
 }
 
-void	check_access(t_pipex *p)
+void	check_access(t_pipex *p, int index)
 {
 	int		i;
 	char	*temp;
@@ -90,7 +90,7 @@ void	check_access(t_pipex *p)
 			p->error = 0;
 		}
 	}
-	if (p->error != 0)
+	if (p->error != 0 && (p->check_infile != 1 || index != 0))
 		msg_error(*p->cmd, ": command not found\n");
 	free(p->path);
 }

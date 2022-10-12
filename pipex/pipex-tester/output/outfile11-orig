@@ -1,0 +1,10 @@
+drwxr-xr-x  4 coder coder  4096 Oct 11 23:04 .$
+drwxr-xr-x 11 coder coder  4096 Oct 11 23:04 ..$
+-rw-r--r--  1 coder coder   108 Oct 11 23:04 fn_allowed$
+drwxr-xr-x  8 coder coder  4096 Oct 11 23:04 .git$
+-rw-r--r--  1 coder coder     0 Oct 11 23:04 infile$
+-rw-r--r--  1 coder coder   160 Oct 11 23:04 Makefile$
+drwxr-xr-x  2 coder coder  4096 Oct 11 23:04 output$
+-rwxr-xr-x  1 coder coder 36256 Oct 11 23:04 pipex$
+-rw-r--r--  1 coder coder   176 Oct 11 23:04 README.md$
+-rwxr-xr-x  1 coder coder 18826 Oct 11 23:04 test.sh$

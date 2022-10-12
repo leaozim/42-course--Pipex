@@ -37,12 +37,6 @@ void	child(t_pipex *p, int i)
 		dup2(p->pipe_in_fd, STDIN_FILENO);
 		dup2(p->pipe_fd[1], STDOUT_FILENO);
 	}
-	if (p->input_file != -1)
-		close(p->input_file);
-	if (p->out_file != -1)
-		close(p->out_file);
-	if (p->pipe_in_fd != -1)
-		close(p->pipe_in_fd);
 }
 
 int	parent(t_pipex *p)
@@ -51,6 +45,11 @@ int	parent(t_pipex *p)
 	int		i;
 
 	i = -1;
+	if (i != 0)
+		close(p->pipe_in_fd);
+	if (i < p->cmd_nb - 1)
+		p->pipe_in_fd = dup(p->pipe_fd[0]);
+	close_pipes_fd(p);
 	while (p->cmd_nb > ++i)
 		waitpid(p->process_id, &status, 0);
 	return (WEXITSTATUS(status));
@@ -65,26 +64,21 @@ int	start_pipex(char **argv, char **envp, t_pipex *pipex)
 	while (pipex->cmd_nb > i)
 	{
 		if (pipe(pipex->pipe_fd) == -1)
-			msg_error("pipex:",  "pipe creating error\n");
+			msg_error("pipe: ",  "creating error\n");
 		pipex->process_id = fork();
 		if (pipex->process_id < 0)
-			msg_error_exit("fork ", ": ERROR\n", 1); //ajeitar essa saida de erro
+			msg_error_exit("fork: ", "creating error\n", 1);
 		if (pipex->process_id == 0)
 		{
 			get_cmd(argv, pipex, i + 2);
 			pipex->path = get_path(envp);
-			check_access(pipex);
+			check_access(pipex, i);
 			child(pipex, i);
+			close_files_fd(pipex);
 			execute_cmd(pipex, i);
 		}
 		else
 		{
-			if (i != 0)
-				close(pipex->pipe_in_fd);
-			if (i < pipex->cmd_nb - 1)
-				pipex->pipe_in_fd = dup(pipex->pipe_fd[0]);
-			close(pipex->pipe_fd[0]);
-			close(pipex->pipe_fd[1]);
 			status = parent(pipex);
 			i++;
 		}

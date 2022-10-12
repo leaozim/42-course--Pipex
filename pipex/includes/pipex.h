@@ -59,15 +59,19 @@ int		start_pipex(char **argv, char **envp, t_pipex *pipex);
 void	get_cmd(char **argv, t_pipex *p, int index);
 // void	get_cmd(char *argv, t_pipex *p, int i);
 char	**get_path(char **envp);
-void		check_access(t_pipex *p);
+// void		check_access(t_pipex *p);
+void	check_access(t_pipex *p, int index);
 void	child(t_pipex *p, int i);
 int		parent(t_pipex *p);
 // void	execute_cmd(t_pipex *p, char **envp);
-void	close_pipes(t_pipex *p);
+// void	close_pipes(t_pipex *p);
+void	close_pipes_fd(t_pipex *p);
 void	msg_error(char *str1, char *str2);
 void	msg_error_exit(char *str1, char *str2, int exit_code);
 void	free_child(t_pipex *p);
 void	free_parent(t_pipex *p);
+void	close_files_fd(t_pipex *p)
+
 // void	execute_cmd(t_pipex *p, char **envp, int i);
 void	execute_cmd(t_pipex *p, int i);
 // void	execute_cmd(t_pipex *p);

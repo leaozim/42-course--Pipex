@@ -14,7 +14,7 @@
 
 void	check_arguments(int argc, char **argv)
 {	
-	if (argc < 5)
+	if (argc != 5)
 		msg_error_exit("syntax error", "\n", 1);
 	if (access(argv[1], F_OK))
 		msg_error(argv[1], ": No such file or directory\n");

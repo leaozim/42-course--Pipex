@@ -21,28 +21,23 @@ void	free_child(t_pipex *p)
 		free(p->cmd[i]);
 	free(p->cmd);
 	i = -1;
-	// while (++i < p->cmd_nb - 1)
-	// 	free(p->pipe_fd[i]);
-	// free(p->pipe_fd);
-	i = -1;
 	while (p->valid_cmd[++i])
 		free(p->valid_cmd[i]);
 	free(p->valid_cmd);
-	// if (p->process_id)
-	// 	free(p->process_id);
 }
 
+void	close_files_fd(t_pipex *p)
+{
+	if (p->input_file != -1)
+		close(p->input_file);
+	if (p->out_file != -1)
+		close(p->out_file);
+	if (p->pipe_in_fd != -1)
+		close(p->pipe_in_fd);
+}
 
-// void	close_pipes(t_pipex *p)
-// {
-// 	int	i;
-
-// 	i = -1;
-// 	while (++i < (p->cmd_nb - 1))
-// 	{
-// 		close(p->pipe_fd[i][0]);
-// 		close(p->pipe_fd[i][1]);
-// 	}
-// 	close(p->input_file);
-// 	close(p->out_file);
-// }
+void	close_pipes_fd(t_pipex *p)
+{
+	close(p->pipe_fd[0]);
+	close(p->pipe_fd[1]);
+}
