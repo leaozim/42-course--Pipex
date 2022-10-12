@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_pipex.c                                       :+:      :+:    :+:   */
+/*   init_pipex_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lade-lim <lade-lim@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 15:48:58 by lade-lim          #+#    #+#             */
-/*   Updated: 2022/10/12 20:29:19 by lade-lim         ###   ########.fr       */
+/*   Updated: 2022/10/12 20:27:10 by lade-lim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pipex.h"
+#include "../includes/pipex_bonus.h"
 
 void	init_pipex(int argc, char **argv, t_pipex *data)
 {
@@ -37,7 +37,7 @@ void	open_infile(t_pipex *data, char **argv)
 
 void	open_outfile(t_pipex *data, char **argv, int argc)
 {
-	data->out_file = open(argv[argc - 1], O_CREAT | O_RDWR | O_TRUNC, 0644);
+	data->out_file = open(argv[argc - 1], O_CREAT | O_RDWR | O_APPEND, 0644);
 	if (data->out_file == -1)
 		msg_error_exit(argv[argc - 1], ": Permission denied\n", 1);
 }

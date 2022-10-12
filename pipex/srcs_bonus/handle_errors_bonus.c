@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_errors.c                                    :+:      :+:    :+:   */
+/*   handle_errors_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lade-lim <lade-lim@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 15:29:00 by de-lim            #+#    #+#             */
-/*   Updated: 2022/10/12 20:45:49 by lade-lim         ###   ########.fr       */
+/*   Updated: 2022/10/12 20:27:06 by lade-lim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pipex.h"
+#include "../includes/pipex_bonus.h"
 
 void	check_arguments(int argc, char **argv)
 {	
-	if (argc != 5)
-		msg_error_exit("syntax error: ", "number of invalid arguments\n", 1);
+	if (argc < 5)
+		msg_error_exit("syntax error", "\n", 1);
 	if (access(argv[1], F_OK))
 		msg_error(argv[1], ": No such file or directory\n");
 }

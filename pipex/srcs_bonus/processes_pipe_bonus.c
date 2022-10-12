@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   processes_pipe.c                                   :+:      :+:    :+:   */
+/*   processes_pipe_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lade-lim <lade-lim@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 15:29:00 by de-lim            #+#    #+#             */
-/*   Updated: 2022/10/12 20:29:32 by lade-lim         ###   ########.fr       */
+/*   Updated: 2022/10/12 20:27:18 by lade-lim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pipex.h"
+#include "../includes/pipex_bonus.h"
 
 void	execute_cmd(t_pipex *p)
 {
@@ -48,6 +48,11 @@ void	child(t_pipex *p)
 	{
 		dup2(p->pipe_in_fd, STDIN_FILENO);
 		dup2(p->out_file, STDOUT_FILENO);
+	}
+	else
+	{
+		dup2(p->pipe_in_fd, STDIN_FILENO);
+		dup2(p->pipe_fd[1], STDOUT_FILENO);
 	}
 }
 
