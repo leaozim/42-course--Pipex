@@ -6,7 +6,7 @@
 /*   By: lade-lim <lade-lim@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 15:33:36 by lade-lim          #+#    #+#             */
-/*   Updated: 2022/10/12 20:26:43 by lade-lim         ###   ########.fr       */
+/*   Updated: 2022/10/17 12:34:37 by lade-lim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,11 @@
 # include "../my_libs/ft_libft/libft.h"	
 # include "../my_libs/ft_printf/ft_printf.h"
 # include <unistd.h>
-# include <stdio.h>
 # include <sys/wait.h>
 # include <fcntl.h>
-# include <errno.h>
 
-# define STDOUT_FILENO 1
-# define STDIN_FILENO 0
+# define STDOUT_FILE 1
+# define STDIN_FILE 0
 # define SINGLE_QUOTES 39 
 # define TEMP_VALUE -1
 # define SPACE 32
@@ -55,7 +53,6 @@ typedef struct s_pipex
 	int		i;
 }	t_pipex;
 
-int		main(int argc, char **argv, char **envp);
 void	check_arguments(int argc, char **argv);
 void	init_pipex(int argc, char **argv, t_pipex *data);
 void	init_pipes(t_pipex *data);
